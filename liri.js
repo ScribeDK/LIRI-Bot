@@ -1,11 +1,14 @@
 var fs = require('fs');
 var request = require('request');
 var spotify = require('spotify');
-var twitter = require('twitter');
-//var keys = require(./keys.js);
+var Twitter = require('twitter');
+var keys = require('./keys.js').twitterKeys;
 
 var action = process.argv[2];
+
+if (action != null){
 action = action.toLowerCase();
+}
 
 if (action == "do-what-it-says"){
 	doWhatItSays()
@@ -24,6 +27,17 @@ else if (action == "movie-this"){
 } 
 
 function myTweets(){
+	
+	var client = new Twitter(keys);
+	
+	var params = {screen_name: 'nodejs'};
+	
+	client.get('statuses/user_timeline', params, function(error, tweets, response) {
+		if (!error) {
+		console.log(tweets);
+		//text
+		}
+	});
 	
 }
 
@@ -48,7 +62,7 @@ function spotifyThisSong(){
 	
 	var songName = process.argv[3];
 	
-	if (songName == null){songName = "The Sign";}
+	if (songName == null){songName = "The-Sign";}
 	
 	spotify.search({ type: 'track', query: songName }, function(err, data) {
     if ( err ) {
