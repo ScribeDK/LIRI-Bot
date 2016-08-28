@@ -42,8 +42,9 @@ function myTweets(){
 	//get data from twitter
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!error) {
-		console.log(tweets);
-		//text
+		
+		for (i = 0; i < tweets.length; i++)
+		console.log("\n" + tweets[i].text);
 		}
 	});
 	
