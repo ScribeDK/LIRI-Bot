@@ -43,12 +43,16 @@ function myTweets(){
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!error) {
 		
-		for (i = 0; i < tweets.length; i++)
-		console.log("\n" + tweets[i].text);
+		//display numbered tweets texts
+		for (i = 0; i < tweets.length; i++){
+		var num = i + 1;
+		console.log("\n" + num + ": " + tweets[i].text);
 		}
-	});
+	}
+	}
+)};
 	
-}
+
 
 //load data from file
 function doWhatItSays(){
